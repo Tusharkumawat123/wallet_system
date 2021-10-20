@@ -1,42 +1,46 @@
 
 require './user.rb'
-#require './wallet.rb'
+require './wallet.rb'
+
+
 
 # driver logic
 input = 0
 while true do
-  user_params = {}
-  puts "Enter id"
-  user_params[:id] = gets.chomp().to_i
+ puts "############ MENU ############"
+ puts "1.Enter USER NAME"
+ puts "2.CREDIT"
+ puts "3.DEBIT"
+ puts "4.PASSBOOK"
+ puts "5.EXIT"
 
-  puts "Enter name"
-  user_params[:name] = gets.chomp()
-
-  puts "Enter Account Number:"
-  user_params[:ac] = gets.chomp().to_i
-
-  user = User.new(user_params)
-
-  pp user
-
-  # inserting user into list
-  User.insert = user
-
-  puts User.count
-  input +=1
-  if input > 2
-    break
+ puts "Enter the Choice:"
+    @value = gets.chomp.to_i
+   
+    case @value
+    when 1
+      puts "ENTER USER NAME:"
+      name = gets.chomp
+      puts "Enter account number:"
+      account = gets.chomp
+      user = User.new(id: 1, name: name, ac: account) 
+      User.insert = user
+      wallet = Wallet.new(id: 1, balance: 0 , user_id: user.id)
+    when 2 
+      puts "CREDIT"
+      puts "Enter the amount"
+      puts wallet.credit(amount: gets.chomp.to_i)
+    when 3 
+      puts "DEBIT"
+      puts "Enter the amount "
+      puts wallet.debit(amount: gets.chomp.to_i)
+    when 4
+      puts "PASSBOOK"
+      puts wallet.list_transactions
+    when 5
+      break
     end
 end
 
 
 
-# wallet = Wallet.new
-
-# puts "enter the discreption:"
-# dis = gets.chomp
-# puts "enter the amount:"
-# amount = gets.chomp.to_i
-
-# a = wallet.credit(dis, amount)
-# p a

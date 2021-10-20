@@ -18,6 +18,4 @@ class User
       @@list << user
     end
   end
-
-
 end

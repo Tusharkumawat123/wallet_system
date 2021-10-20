@@ -1,30 +1,29 @@
 require './wallet_item.rb'
 
 class Wallet
-  attr_reader :balance
-  def initialize 
+  attr_accessor :balance, :transactions
+  def initialize (id: 0, balance: 0, user_id: 0)
     @transactions = []
     @balance = 0
+    @user_id = nil
    end
 
    def credit(amount: 0)
-     @balance += amount
      @transactions << WalletItem.new(id: 1, amt: amount, note: 'CREDIT') 
+     @balance += amount
    end
 
   def debit(amount: 0)
-    @balance -= amount
     @transactions << WalletItem.new(id: 1, amt: amount, note: 'DEBIT')
+    @balance -= amount
+  end
+
+  def list_transactions
+    print "#########Transactions_List#############","\n"
+    print "ID  |  AMOUNT  |  NOTE\n"
+    for item in transactions
+      p "#{item.id}  |  #{item.amount}  | #{item.note} \n" 
+    end
   end
 
 end
-
-# driver logic
- mywallet = Wallet.new
-#puts mywallet.balance
-print "Enter the cried amount:"
-p mywallet.credit(amount: gets.chomp.to_i)
-puts mywallet.balance
-print "Enter debit amount:"
- p mywallet.debit(amount: gets.chomp.to_i)
-puts mywallet.balance
