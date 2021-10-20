@@ -1,6 +1,6 @@
 
 require './user.rb'
-require './wallet.rb'
+#require './wallet.rb'
 
 # driver logic
 input = 0
